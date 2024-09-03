@@ -1,0 +1,837 @@
+{
+  "last_node_id": 268,
+  "last_link_id": 407,
+  "nodes": [
+    {
+      "id": 108,
+      "type": "DownloadAndLoadFlorence2Model",
+      "pos": [
+        500,
+        360
+      ],
+      "size": {
+        "0": 310,
+        "1": 110
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "lora",
+          "type": "PEFTLORA",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "florence2_model",
+          "type": "FL2MODEL",
+          "links": [
+            215
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DownloadAndLoadFlorence2Model"
+      },
+      "widgets_values": [
+        "microsoft/Florence-2-base",
+        "fp16",
+        "eager"
+      ],
+      "color": "#323",
+      "bgcolor": "#535",
+      "shape": 1
+    },
+    {
+      "id": 109,
+      "type": "Florence2Run",
+      "pos": [
+        980,
+        340
+      ],
+      "size": {
+        "0": 310,
+        "1": 360
+      },
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 187
+        },
+        {
+          "name": "florence2_model",
+          "type": "FL2MODEL",
+          "link": 215
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "caption",
+          "type": "STRING",
+          "links": [
+            402
+          ],
+          "slot_index": 2,
+          "shape": 3
+        },
+        {
+          "name": "data",
+          "type": "JSON",
+          "links": [],
+          "slot_index": 3,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Florence2Run"
+      },
+      "widgets_values": [
+        "",
+        "more_detailed_caption",
+        true,
+        false,
+        1024,
+        3,
+        true,
+        "",
+        807431453279986,
+        "randomize",
+        true
+      ],
+      "color": "#232",
+      "bgcolor": "#353",
+      "shape": 1
+    },
+    {
+      "id": 126,
+      "type": "Reroute",
+      "pos": [
+        880,
+        80
+      ],
+      "size": [
+        82,
+        26
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": 394,
+          "slot_index": 0
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            187,
+            400
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "showOutputText": true,
+        "horizontal": false
+      },
+      "color": "#417096",
+      "bgcolor": "#2d5c82",
+      "shape": 1
+    },
+    {
+      "id": 219,
+      "type": "Note",
+      "pos": [
+        500,
+        530
+      ],
+      "size": {
+        "0": 310,
+        "1": 120
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "title": "Optional Flash Attention",
+      "properties": {
+        "text": ""
+      },
+      "widgets_values": [
+        "For flash attention, don't forget to install flash attention - \"pip install flash-attn --no-build-isolation\".\n\nMicrosoft Windows is NOT recommended unless you're familiar with using that operating system. Build time will take around 1 hour."
+      ],
+      "color": "#322",
+      "bgcolor": "#533",
+      "shape": 1
+    },
+    {
+      "id": 238,
+      "type": "CR Integer To String",
+      "pos": [
+        1080,
+        760
+      ],
+      "size": {
+        "0": 210,
+        "1": 54
+      },
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "int_",
+          "type": "INT",
+          "link": 398,
+          "widget": {
+            "name": "int_"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            387,
+            401,
+            407
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "show_help",
+          "type": "STRING",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CR Integer To String"
+      },
+      "widgets_values": [
+        2
+      ],
+      "color": "#222",
+      "bgcolor": "#000",
+      "shape": 1
+    },
+    {
+      "id": 239,
+      "type": "Note",
+      "pos": [
+        850,
+        870
+      ],
+      "size": {
+        "0": 440,
+        "1": 80
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "properties": {
+        "text": ""
+      },
+      "widgets_values": [
+        "Couldn't find a node which also output names, so let's generate names instead :)"
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930",
+      "shape": 1
+    },
+    {
+      "id": 240,
+      "type": "> Save Image",
+      "pos": [
+        1480,
+        620
+      ],
+      "size": {
+        "0": 350,
+        "1": 410
+      },
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 400
+        },
+        {
+          "name": "filename_opt",
+          "type": "STRING",
+          "link": 401,
+          "slot_index": 1,
+          "widget": {
+            "name": "filename_opt"
+          }
+        },
+        {
+          "name": "filename_prefix",
+          "type": "STRING",
+          "link": 387,
+          "widget": {
+            "name": "filename_prefix"
+          }
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "> Save Image"
+      },
+      "widgets_values": [
+        "",
+        "my_new_dataset_3",
+        false,
+        false,
+        "png",
+        100,
+        ""
+      ],
+      "color": "#222",
+      "bgcolor": "#000",
+      "shape": 1
+    },
+    {
+      "id": 244,
+      "type": "ListCounter //Inspire",
+      "pos": [
+        850,
+        760
+      ],
+      "size": {
+        "0": 210,
+        "1": 60
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "signal",
+          "type": "*",
+          "link": 393,
+          "slot_index": 0
+        }
+      ],
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            398
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ListCounter //Inspire"
+      },
+      "widgets_values": [
+        0
+      ],
+      "color": "#222",
+      "bgcolor": "#000",
+      "shape": 1
+    },
+    {
+      "id": 245,
+      "type": "LoadImageListFromDir //Inspire",
+      "pos": [
+        500,
+        80
+      ],
+      "size": {
+        "0": 315,
+        "1": 150
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            393,
+            394
+          ],
+          "slot_index": 0,
+          "shape": 6
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 6
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImageListFromDir //Inspire"
+      },
+      "widgets_values": [
+        "/home/nerdy/Pictures/LoRA_datatsets/mixed-test",
+        0,
+        0,
+        false
+      ],
+      "color": "#223",
+      "bgcolor": "#335",
+      "shape": 1
+    },
+    {
+      "id": 255,
+      "type": "ShowText|pysssss",
+      "pos": [
+        1320,
+        410
+      ],
+      "size": {
+        "0": 470,
+        "1": 730
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 402,
+          "widget": {
+            "name": "text"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            406
+          ],
+          "slot_index": 0,
+          "shape": 6
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShowText|pysssss"
+      },
+      "widgets_values": [
+        "",
+        "The image is a black and white illustration of a man's face. The man appears to be in his late twenties or early thirties, with curly hair that is styled in an afro-like manner. He has a serious expression on his face, with his eyes wide open and his mouth slightly open, as if he is shouting or shouting. He is wearing a collar with a ruffled collar and a black shawl draped over his shoulders. The background is plain white, making the man's head and shoulders the focal point of the image.",
+        "The image is a black and white illustration of a man sitting on a bench in front of a window. The man is wearing a long coat and a hat, and he is holding a book in his hands. He appears to be deep in thought, with his head bowed and his hands resting on his knees. The window behind him is decorated with intricate floral and leaf designs, and there are trees and bushes in the background. The overall style of the illustration is ornate and detailed.",
+        "The image is a black and white illustration of a man walking in a garden. The man is wearing a long coat and trousers and is holding a cane in his right hand. He appears to be walking towards a pillar with the words \"ET IN ARCADIA EGO\" written on it. The pillar is surrounded by trees and bushes, and there is a large tree on the left side of the image. The background is a plain white wall. The illustration is done in a simple, cartoon-like style.",
+        "The image is a black and white illustration of two women wearing masks. The woman on the left is wearing a large, curly wig with a black mask covering her face. She has a big smile on her face and is holding a wand in her right hand. The man on the right is also wearing a mask with a pointed nose and a pointed mouth. Both women are wearing a dress with a polka dot pattern. The background is black, and the illustration is done in a simple, cartoon-like style.",
+        "The image is a black and white line drawing of a man standing in front of a bookshelf. The man is wearing a long coat with a ruffled collar and a white shirt underneath. He is holding a book in his right hand and appears to be reading it intently. The bookshelves behind him are filled with books of various sizes and colors. On the right side of the image, there is a table with a vase of flowers and a lamp. The room is decorated with curtains and a window with a curtain rod. The overall style of the illustration is traditional and elegant.",
+        "The image is a black and white illustration of two women sitting on a rock, facing each other. The woman on the left is wearing a long, flowing dress with a high neckline and long sleeves, and her hair is styled in loose curls. She is holding a snake in her hand and appears to be kissing the other woman's face. The background is filled with intricate patterns and swirls, and there is a body of water in front of them. On the right side of the image, there are two tall, slender poles with a flower on top. The overall mood of the illustration is romantic and dreamlike.",
+        "The image is a black and white illustration of two women. The woman on the left is wearing a long, flowing dress with intricate patterns and designs. She has a large veil that is draped over her head, covering her face. She is also wearing a feathered headpiece with feathers.\n\nThe woman in the middle is standing with her back to the viewer, facing away from the viewer. She appears to be looking at the other woman with a serious expression on her face, as if she is deep in thought. The background is filled with swirls and patterns, creating a sense of movement and energy. The overall style of the illustration is elegant and sophisticated.",
+        "The image is a black and white illustration of a cat sitting on top of a woman's head. The cat is facing towards the left side of the image and is sitting on its hind legs with its front paws resting on the woman's shoulder. The woman's face is in profile, with her eyes closed and her head tilted slightly to the side. She is wearing a necklace and earrings. The background is a plain black color. The illustration is framed in a simple gold border.",
+        "The image is a black and white illustration of a woman standing in front of a dark background. The woman is wearing a long-sleeved dress with a ruffled neckline and long sleeves. She has long, wavy hair that is styled in loose waves and falls over her shoulders. Her face is not visible in the image, but her expression is serious and contemplative.\n\nThe woman is standing with her arms at her sides and her head tilted slightly to the side. She is surrounded by a pattern of small, circular objects that appear to be spheres or crystals. The objects are arranged in a symmetrical pattern, with some overlapping each other. The overall style of the illustration is abstract and surreal, with a sense of depth and dimension.",
+        "The image is a black and white illustration of a man carrying a large bowl on his back. He is walking on a path with a castle in the background. The man is wearing a long robe and a headscarf, and he is holding a stick in his right hand. The bowl is filled with water and appears to be overflowing. The illustration is done in a sketch-like style, with loose lines and shading. The background shows a landscape with trees and mountains in the distance.",
+        "The image is a black and white illustration of a group of people in a luxurious and ornate setting. The background is filled with intricate patterns and designs, and the focal point of the image is the central figure in the center, who appears to be a woman with long, flowing hair and a crown on her head. She is wearing a long dress with a high neckline and long sleeves.\n\nAround her, there are several other figures, including a man in a suit and a woman in a dress, who are also dressed in elaborate costumes. The man is holding a staff and is standing on a throne-like structure, which is decorated with flowers and leaves. The woman in the dress is standing in front of a large, ornate vase with a bird perched on top of it. The other figures are scattered around the scene, some of them are sitting and some are standing, while others are lying on the ground. The overall mood of the illustration is one of grandeur and opulence.",
+        "The image is a black and white illustration of a woman in a long dress with a halo on her head. She is standing in front of a table with a man lying on it. The man is lying on his back with his head resting on the table and his eyes closed. He is wearing a long robe with intricate patterns and designs on it, and his hair is styled in an updo with curly curls. The woman is holding a bouquet of flowers in her hand and appears to be combing the man's hair. The background is plain and the overall mood of the image is somber.",
+        "The image is a black and white illustration of a scene from a book titled \"The Rape of the Lock: The Barge.\" The scene is set in a room with a large window in the center. The window is decorated with curtains and flowers, and there are two women sitting on either side of the window. The woman on the left is wearing a long dress with a high neckline and long sleeves, and she is holding a bouquet of flowers in her hand. She is also wearing a hat with a feather on top.\n\nThe woman in the middle is sitting on a chair with her legs crossed and is looking at the other woman with a smile on her face. She has long curly hair and is wearing an ornate dress with intricate details. The other woman is standing next to her, wearing a dress with long sleeves and a headscarf. She appears to be looking at her with a curious expression. The background is filled with trees and foliage, and the overall mood of the image is whimsical and dreamlike.",
+        "The image is a black and white illustration of a woman in a long, flowing gown with a crown on her head. She is standing in front of a black background with intricate patterns and designs. The woman has long dark hair and is looking off to the side with a serious expression on her face. On either side of her, there are two figures, one of which is holding a book and the other is standing on a pedestal. The figures are wearing long robes and have crowns on their heads. The word \"VENUS\" is written in a cursive font at the bottom of the image.",
+        "The image is a black and white illustration of two people on horseback in a forest. The person on the left is wearing a hat and armor, and is holding a sword in his right hand. He is riding a white horse with a saddle and bridle, and the person in the middle is sitting on the back of the horse. The horse is galloping through the forest, with trees and bushes in the background. The figures appear to be engaged in a conversation, with one person gesturing with their hands as if they are explaining something to the other. The overall mood of the image is peaceful and serene.",
+        "The image is a black and white illustration of a woman standing in a field with tall grass and flowers. She is wearing a long, flowing dress with intricate patterns and designs. The woman is holding a staff in her right hand and appears to be reaching up towards the sky. In the background, there is a body of water with a small island in the distance. The sky is overcast and the overall mood of the image is peaceful and serene. The illustration is framed by a decorative border with flowers and leaves."
+      ],
+      "color": "#222",
+      "bgcolor": "#000",
+      "shape": 1
+    },
+    {
+      "id": 259,
+      "type": "Save Text File",
+      "pos": [
+        1480,
+        380
+      ],
+      "size": {
+        "0": 350,
+        "1": 180
+      },
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 406,
+          "widget": {
+            "name": "text"
+          }
+        },
+        {
+          "name": "filename_prefix",
+          "type": "STRING",
+          "link": 407,
+          "widget": {
+            "name": "filename_prefix"
+          }
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Save Text File"
+      },
+      "widgets_values": [
+        "",
+        "/home/nerdy/github/ComfyUI/output/my_new_dataset_3",
+        "",
+        "",
+        0,
+        ".txt",
+        "utf-8"
+      ],
+      "color": "#222",
+      "bgcolor": "#000",
+      "shape": 1
+    },
+    {
+      "id": 261,
+      "type": "Note",
+      "pos": [
+        490,
+        -170
+      ],
+      "size": {
+        "0": 1350,
+        "1": 160
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "properties": {
+        "text": ""
+      },
+      "widgets_values": [
+        "Loads images from a directory, captions them and creates a dataset ready for training, such as for a lora\n\nhttps://github.com/ltdrdata/ComfyUI-Inspire-Pack\nhttps://github.com/kijai/ComfyUI-Florence2\nhttps://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes\nhttps://github.com/WASasquatch/was-node-suite-comfyui\nhttps://github.com/ALatentPlace/ComfyUI_yanc"
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930",
+      "shape": 1
+    },
+    {
+      "id": 262,
+      "type": "Note",
+      "pos": [
+        980,
+        200
+      ],
+      "size": {
+        "0": 310,
+        "1": 80
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "properties": {
+        "text": ""
+      },
+      "widgets_values": [
+        "Processes a list more like a batch, so that's a thing. Still, show text seems OK with that?"
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930",
+      "shape": 1
+    },
+    {
+      "id": 264,
+      "type": "CR Text Concatenate",
+      "pos": [
+        1480,
+        220
+      ],
+      "size": {
+        "0": 210,
+        "1": 80
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "text1",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "text1"
+          }
+        },
+        {
+          "name": "text2",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "text2"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "*",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "show_help",
+          "type": "STRING",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CR Text Concatenate"
+      },
+      "widgets_values": [
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 265,
+      "type": "Note",
+      "pos": [
+        1480,
+        80
+      ],
+      "size": {
+        "0": 310,
+        "1": 80
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "properties": {
+        "text": ""
+      },
+      "widgets_values": [
+        "Optionally, concat a tag or other text to the start."
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930",
+      "shape": 1
+    },
+    {
+      "id": 266,
+      "type": "Note",
+      "pos": [
+        1860,
+        390
+      ],
+      "size": {
+        "0": 440,
+        "1": 80
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "properties": {
+        "text": ""
+      },
+      "widgets_values": [
+        "output directory for text"
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930",
+      "shape": 1
+    },
+    {
+      "id": 267,
+      "type": "Note",
+      "pos": [
+        1860,
+        630
+      ],
+      "size": {
+        "0": 440,
+        "1": 80
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "properties": {
+        "text": ""
+      },
+      "widgets_values": [
+        "output directory for images"
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930",
+      "shape": 1
+    },
+    {
+      "id": 268,
+      "type": "Note",
+      "pos": [
+        180,
+        90
+      ],
+      "size": {
+        "0": 280,
+        "1": 120
+      },
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "properties": {
+        "text": ""
+      },
+      "widgets_values": [
+        "Your raw images"
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930",
+      "shape": 1
+    }
+  ],
+  "links": [
+    [
+      187,
+      126,
+      0,
+      109,
+      0,
+      "IMAGE"
+    ],
+    [
+      215,
+      108,
+      0,
+      109,
+      1,
+      "FL2MODEL"
+    ],
+    [
+      387,
+      238,
+      0,
+      240,
+      2,
+      "STRING"
+    ],
+    [
+      393,
+      245,
+      0,
+      244,
+      0,
+      "*"
+    ],
+    [
+      394,
+      245,
+      0,
+      126,
+      0,
+      "*"
+    ],
+    [
+      398,
+      244,
+      0,
+      238,
+      0,
+      "INT"
+    ],
+    [
+      400,
+      126,
+      0,
+      240,
+      0,
+      "IMAGE"
+    ],
+    [
+      401,
+      238,
+      0,
+      240,
+      1,
+      "STRING"
+    ],
+    [
+      402,
+      109,
+      2,
+      255,
+      0,
+      "STRING"
+    ],
+    [
+      406,
+      255,
+      0,
+      259,
+      0,
+      "STRING"
+    ],
+    [
+      407,
+      238,
+      0,
+      259,
+      1,
+      "STRING"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "Group",
+      "bounding": [
+        490,
+        10,
+        1350,
+        1034
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "locked": false
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1.1,
+      "offset": [
+        -310.9595867768601,
+        168.7014049586778
+      ]
+    }
+  },
+  "version": 0.4
+}
