@@ -1,0 +1,4431 @@
+{
+  "last_node_id": 517,
+  "last_link_id": 1236,
+  "nodes": [
+    {
+      "id": 159,
+      "type": "VAELoader",
+      "pos": {
+        "0": 10,
+        "1": 570
+      },
+      "size": {
+        "0": 290,
+        "1": 60
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            295
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "ae.sft"
+      ],
+      "color": "#323",
+      "bgcolor": "#535",
+      "shape": 1
+    },
+    {
+      "id": 169,
+      "type": "OverrideCLIPDevice",
+      "pos": {
+        "0": 320,
+        "1": 210
+      },
+      "size": {
+        "0": 210,
+        "1": 60
+      },
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 293
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            521
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "OverrideCLIPDevice"
+      },
+      "widgets_values": [
+        "cpu"
+      ],
+      "color": "#323",
+      "bgcolor": "#535",
+      "shape": 1
+    },
+    {
+      "id": 161,
+      "type": "UNETLoader",
+      "pos": {
+        "0": 10,
+        "1": 70
+      },
+      "size": {
+        "0": 290,
+        "1": 82
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            711
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UNETLoader"
+      },
+      "widgets_values": [
+        "Flux/flux1-dev.sft",
+        "fp8_e4m3fn"
+      ],
+      "color": "#323",
+      "bgcolor": "#535",
+      "shape": 1
+    },
+    {
+      "id": 339,
+      "type": "UnetLoaderGGUFAdvanced",
+      "pos": {
+        "0": 10,
+        "1": 220
+      },
+      "size": {
+        "0": 290,
+        "1": 130
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            712
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UnetLoaderGGUFAdvanced"
+      },
+      "widgets_values": [
+        "Flux/flux1-dev-Q4_K_S.gguf",
+        "default",
+        "default",
+        false
+      ],
+      "color": "#323",
+      "bgcolor": "#535",
+      "shape": 1
+    },
+    {
+      "id": 340,
+      "type": "CR Model Input Switch",
+      "pos": {
+        "0": 320,
+        "1": 70
+      },
+      "size": {
+        "0": 210,
+        "1": 80
+      },
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model1",
+          "type": "MODEL",
+          "link": 711
+        },
+        {
+          "name": "model2",
+          "type": "MODEL",
+          "link": 712
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            726
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "show_help",
+          "type": "STRING",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CR Model Input Switch"
+      },
+      "widgets_values": [
+        1
+      ],
+      "color": "#233",
+      "bgcolor": "#355",
+      "shape": 1
+    },
+    {
+      "id": 399,
+      "type": "Anything Everywhere",
+      "pos": {
+        "0": 1230,
+        "1": 700
+      },
+      "size": {
+        "0": 210,
+        "1": 30
+      },
+      "flags": {},
+      "order": 30,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "LATENT",
+          "type": "*",
+          "link": 830,
+          "color_on": "#FF9CF9"
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Anything Everywhere",
+        "group_restricted": 0,
+        "color_restricted": 0
+      },
+      "widgets_values": [],
+      "color": "#332922",
+      "bgcolor": "#593930",
+      "shape": 1
+    },
+    {
+      "id": 8,
+      "type": "VAEDecode",
+      "pos": {
+        "0": 1300,
+        "1": 520
+      },
+      "size": {
+        "0": 140,
+        "1": 50
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 833
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            721
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "color": "#332922",
+      "bgcolor": "#593930",
+      "shape": 1
+    },
+    {
+      "id": 170,
+      "type": "OverrideVAEDevice",
+      "pos": {
+        "0": 320,
+        "1": 330
+      },
+      "size": {
+        "0": 210,
+        "1": 60
+      },
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 295
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            828,
+            833
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "OverrideVAEDevice"
+      },
+      "widgets_values": [
+        "cuda:0"
+      ],
+      "color": "#323",
+      "bgcolor": "#535",
+      "shape": 1
+    },
+    {
+      "id": 344,
+      "type": "PreviewImage",
+      "pos": {
+        "0": 1490,
+        "1": 90
+      },
+      "size": {
+        "0": 1080,
+        "1": 700
+      },
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 721
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "color": "#222",
+      "bgcolor": "#000",
+      "shape": 1
+    },
+    {
+      "id": 398,
+      "type": "Anything Everywhere",
+      "pos": {
+        "0": 550,
+        "1": 250
+      },
+      "size": {
+        "0": 210,
+        "1": 30
+      },
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "VAE",
+          "type": "*",
+          "link": 828,
+          "color_on": "#FF6E6E"
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Anything Everywhere",
+        "group_restricted": 0,
+        "color_restricted": 0
+      },
+      "widgets_values": [],
+      "color": "#322",
+      "bgcolor": "#533",
+      "shape": 1
+    },
+    {
+      "id": 98,
+      "type": "EmptySD3LatentImage",
+      "pos": {
+        "0": 550,
+        "1": 740
+      },
+      "size": {
+        "0": 230,
+        "1": 80
+      },
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "link": 372,
+          "widget": {
+            "name": "width"
+          }
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "link": 371,
+          "widget": {
+            "name": "height"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            535
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptySD3LatentImage"
+      },
+      "widgets_values": [
+        1024,
+        1024,
+        1
+      ],
+      "color": "#b068ab",
+      "bgcolor": "#9c5497",
+      "shape": 1
+    },
+    {
+      "id": 397,
+      "type": "Anything Everywhere",
+      "pos": {
+        "0": 550,
+        "1": 340
+      },
+      "size": {
+        "0": 210,
+        "1": 30
+      },
+      "flags": {},
+      "order": 25,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "MODEL",
+          "type": "*",
+          "link": 835,
+          "color_on": "#B39DDB"
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Anything Everywhere",
+        "group_restricted": 0,
+        "color_restricted": 0
+      },
+      "widgets_values": [],
+      "color": "#332922",
+      "bgcolor": "#593930",
+      "shape": 1
+    },
+    {
+      "id": 395,
+      "type": "Prompts Everywhere",
+      "pos": {
+        "0": 1270,
+        "1": 590
+      },
+      "size": {
+        "0": 170,
+        "1": 50
+      },
+      "flags": {},
+      "order": 29,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "*",
+          "link": 816,
+          "color_on": "#FFA931"
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "*",
+          "link": 817,
+          "color_on": "#FFA931"
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Prompts Everywhere",
+        "group_restricted": 0,
+        "color_restricted": 0
+      },
+      "widgets_values": [],
+      "color": "#332922",
+      "bgcolor": "#593930",
+      "shape": 1
+    },
+    {
+      "id": 448,
+      "type": "SaveImage",
+      "pos": {
+        "0": 1850,
+        "1": 930
+      },
+      "size": {
+        "0": 1370,
+        "1": 1020
+      },
+      "flags": {},
+      "order": 37,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 877
+        }
+      ],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "Flux_Upscaled"
+      ],
+      "color": "#222",
+      "bgcolor": "#000",
+      "shape": 1
+    },
+    {
+      "id": 99,
+      "type": "ModelSamplingFlux",
+      "pos": {
+        "0": 550,
+        "1": 70
+      },
+      "size": {
+        "0": 230,
+        "1": 122
+      },
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 726
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "link": 373,
+          "widget": {
+            "name": "width"
+          }
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "link": 374,
+          "widget": {
+            "name": "height"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            727
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ModelSamplingFlux"
+      },
+      "widgets_values": [
+        0.66,
+        0.46,
+        1024,
+        1024
+      ],
+      "color": "#553d6c",
+      "bgcolor": "#412958",
+      "shape": 1
+    },
+    {
+      "id": 272,
+      "type": "Lora Loader Stack (rgthree)",
+      "pos": {
+        "0": 550,
+        "1": 430
+      },
+      "size": {
+        "0": 230,
+        "1": 250
+      },
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 727
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 521
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            835
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            732,
+            733
+          ],
+          "slot_index": 1,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Lora Loader Stack (rgthree)"
+      },
+      "widgets_values": [
+        "flux/Hyper-FLUX.1-dev-8steps-lora.safetensors",
+        0.14,
+        "flux/Shakker-FLUX-dev-lora-add_details.safetensors",
+        0.12,
+        "flux/shakker-filmfotos.safetensors",
+        0.42,
+        "None",
+        1
+      ],
+      "color": "#323",
+      "bgcolor": "#535",
+      "shape": 1
+    },
+    {
+      "id": 160,
+      "type": "DualCLIPLoader",
+      "pos": {
+        "0": 10,
+        "1": 410
+      },
+      "size": {
+        "0": 290,
+        "1": 110
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            293
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DualCLIPLoader"
+      },
+      "widgets_values": [
+        "t5xxl_fp16.safetensors",
+        "ViT-L-14-TEXT-detail-improved-hiT-GmP-TE-only-HF.safetensors",
+        "flux"
+      ],
+      "color": "#323",
+      "bgcolor": "#535",
+      "shape": 1
+    },
+    {
+      "id": 171,
+      "type": "Note",
+      "pos": {
+        "0": 10,
+        "1": 680
+      },
+      "size": {
+        "0": 290,
+        "1": 150
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "text": ""
+      },
+      "widgets_values": [
+        "Added loaders for either Dev or GGUF\n\nComfyUI Manager Custom Nodes\nImpact Pack = ID 2\nWAS Node Suite = ID 25\nExtra Models for ComfyUI = ID 53\nComfyUI-GGUF = ID 54\nComfyroll Studio = ID 81\nUse Everywhere (UE Nodes) = ID 247\nCLIP = https://huggingface.co/zer0int/CLIP-GmP-ViT-L-14\nShakker Labs = https://huggingface.co/Shakker-Labs\nHyper-SD = https://huggingface.co/ByteDance/Hyper-SD"
+      ],
+      "color": "#222",
+      "bgcolor": "#000",
+      "shape": 1
+    },
+    {
+      "id": 445,
+      "type": "VAEDecode",
+      "pos": {
+        "0": 1690,
+        "1": 1600
+      },
+      "size": {
+        "0": 140,
+        "1": 50
+      },
+      "flags": {},
+      "order": 35,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 873
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 874
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            877,
+            1198,
+            1199
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "color": "#332922",
+      "bgcolor": "#593930",
+      "shape": 1
+    },
+    {
+      "id": 480,
+      "type": "UpscaleModelLoader",
+      "pos": {
+        "0": 1490,
+        "1": 2220
+      },
+      "size": {
+        "0": 320,
+        "1": 60
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "UPSCALE_MODEL",
+          "type": "UPSCALE_MODEL",
+          "links": [
+            1170
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UpscaleModelLoader"
+      },
+      "widgets_values": [
+        "4xNomosUniDAT_otf.pth"
+      ],
+      "color": "#323",
+      "bgcolor": "#535",
+      "shape": 1
+    },
+    {
+      "id": 484,
+      "type": "PreviewImage",
+      "pos": {
+        "0": 1840,
+        "1": 2250
+      },
+      "size": {
+        "0": 1110,
+        "1": 860
+      },
+      "flags": {},
+      "order": 40,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 1172
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "color": "#222",
+      "bgcolor": "#000",
+      "shape": 1
+    },
+    {
+      "id": 479,
+      "type": "PreviewImage",
+      "pos": {
+        "0": 3370,
+        "1": 2100
+      },
+      "size": {
+        "0": 1120,
+        "1": 1120
+      },
+      "flags": {},
+      "order": 41,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 1167
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "color": "#222",
+      "bgcolor": "#000",
+      "shape": 1
+    },
+    {
+      "id": 220,
+      "type": "PrimitiveNode",
+      "pos": {
+        "0": 320,
+        "1": 440
+      },
+      "size": {
+        "0": 210,
+        "1": 80
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            372,
+            373
+          ],
+          "slot_index": 0,
+          "widget": {
+            "name": "width"
+          }
+        }
+      ],
+      "title": "Width",
+      "properties": {
+        "Run widget replace on values": false
+      },
+      "widgets_values": [
+        1024,
+        "fixed"
+      ],
+      "color": "#233",
+      "bgcolor": "#355",
+      "shape": 1
+    },
+    {
+      "id": 219,
+      "type": "PrimitiveNode",
+      "pos": {
+        "0": 320,
+        "1": 570
+      },
+      "size": {
+        "0": 210,
+        "1": 80
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            371,
+            374
+          ],
+          "slot_index": 0,
+          "widget": {
+            "name": "height"
+          }
+        }
+      ],
+      "title": "Height",
+      "properties": {
+        "Run widget replace on values": false
+      },
+      "widgets_values": [
+        1024,
+        "fixed"
+      ],
+      "color": "#233",
+      "bgcolor": "#355",
+      "shape": 1
+    },
+    {
+      "id": 273,
+      "type": "CLIPTextEncodeFlux",
+      "pos": {
+        "0": 340,
+        "1": 700
+      },
+      "size": {
+        "0": 340,
+        "1": 240
+      },
+      "flags": {
+        "collapsed": true,
+        "pinned": false
+      },
+      "order": 26,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 732
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            534,
+            817
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncodeFlux"
+      },
+      "widgets_values": [
+        "blurry, bokeh, depth-of-field",
+        "an open mouth with loads of teeth and plastic-looking, waxy sheen. gloss finish. massive chin cleft which is deeper than the grand canyon. There are also way too many lamps.",
+        3.5,
+        true,
+        true
+      ],
+      "color": "#322",
+      "bgcolor": "#533",
+      "shape": 1
+    },
+    {
+      "id": 510,
+      "type": "PreviewImage",
+      "pos": {
+        "0": 900,
+        "1": 1260
+      },
+      "size": {
+        "0": 260,
+        "1": 250
+      },
+      "flags": {},
+      "order": 36,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 1220
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "color": "#222",
+      "bgcolor": "#000",
+      "shape": 1
+    },
+    {
+      "id": 511,
+      "type": "LatentMultiply",
+      "pos": {
+        "0": 920,
+        "1": 1090
+      },
+      "size": {
+        "0": 210,
+        "1": 60
+      },
+      "flags": {},
+      "order": 32,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 1216
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            1218,
+            1219
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LatentMultiply"
+      },
+      "widgets_values": [
+        0.85
+      ],
+      "color": "#222",
+      "bgcolor": "#000",
+      "shape": 1
+    },
+    {
+      "id": 513,
+      "type": "VAEDecode",
+      "pos": {
+        "0": 960,
+        "1": 1210
+      },
+      "size": {
+        "0": 140,
+        "1": 50
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 34,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 1219
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            1220
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "color": "#332922",
+      "bgcolor": "#593930",
+      "shape": 1
+    },
+    {
+      "id": 324,
+      "type": "CLIPTextEncodeFlux",
+      "pos": {
+        "0": 800,
+        "1": 70
+      },
+      "size": {
+        "0": 340,
+        "1": 750
+      },
+      "flags": {},
+      "order": 27,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 733
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            687,
+            816
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncodeFlux"
+      },
+      "widgets_values": [
+        "highly detailed skin texture, hairs, powder, minor impertfections, dusty, macro-art style photography, make-up, blusher, skin pores. front-view, straight on. colourful background, orange, black, red, blue and green tones. slightly faded internet meme post.",
+        "Yet another really boring photo style image of a another cute woman in her 20s with long, blonde hair and blue eyes, and dry, tanned skin who looks very generic. She is wearing an orange & blue knitted scenic jumper with the word \"Testing\" knitted in yellow on it. She is smiling and wears really dark-red lip-stick and black, gothic eye-shadow. Upper body only. She stands beside part of a painting of a trendy, bearded hipster barista dude who is inside a gaudy, 1950's style, North American New York diner. He is looking down towards his mobile phone (which has a cool rodent logo on it). Overall, everything is really detailed, with lots of intricate stuff going on. Inside the classic British Pub are the usual black and white wooden beams, hops, all that sort of thing. The black wallpaper with red roses on looks cool too. Colourful background, unreal 5, octane engine, trending on myspace, 35mm masterpiece quality, sharp focus, soft lighting cinematic movie film still, supereme quality. Rated 10/10 and given 5 stars on everything. universally aclaimed, even by aliens. Shockingly good image which actually looks real. Sort of. Just squint a bit.",
+        2.2,
+        true,
+        true
+      ],
+      "color": "#232",
+      "bgcolor": "#353",
+      "shape": 1
+    },
+    {
+      "id": 277,
+      "type": "KSamplerAdvanced",
+      "pos": {
+        "0": 1160,
+        "1": 140
+      },
+      "size": {
+        "0": 270,
+        "1": 334
+      },
+      "flags": {},
+      "order": 28,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": null
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 687
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 534
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 535
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            830,
+            1221
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSamplerAdvanced"
+      },
+      "widgets_values": [
+        "enable",
+        165465479326,
+        "fixed",
+        8,
+        1,
+        "deis",
+        "simple",
+        0,
+        10000,
+        "disable"
+      ],
+      "color": "#223",
+      "bgcolor": "#335",
+      "shape": 1
+    },
+    {
+      "id": 493,
+      "type": "Note",
+      "pos": {
+        "0": 1180,
+        "1": 1260
+      },
+      "size": {
+        "0": 250,
+        "1": 250
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "text": ""
+      },
+      "widgets_values": [
+        "* Hyper-SD prefers ~3.5, so it can be set here, independent of the prompt\n\n\n"
+      ],
+      "color": "#222",
+      "bgcolor": "#000",
+      "shape": 1
+    },
+    {
+      "id": 485,
+      "type": "FluxGuidance",
+      "pos": {
+        "0": 1220,
+        "1": 970
+      },
+      "size": {
+        "0": 210,
+        "1": 60
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": null,
+          "label": "positive"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            1181
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FluxGuidance"
+      },
+      "widgets_values": [
+        3.5
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930",
+      "shape": 1
+    },
+    {
+      "id": 469,
+      "type": "Note",
+      "pos": {
+        "0": 770,
+        "1": 1670
+      },
+      "size": {
+        "0": 650,
+        "1": 290
+      },
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Upscale dev notes",
+      "properties": {
+        "text": ""
+      },
+      "widgets_values": [
+        "Initial image:\n976x1600 = lots of visible banding\n976x1392 = less banding\n\nNB. higher upscales will use tiled VAE, resulting in a performance drop. Min denoise ~ 0.15. Higher denoise = smoother.\n\nUpscales: (976x1392, hyper 0.13, noise .21, mult .88 , cfg .1, denoise .34)\nUpscale to 1952x2784 (us2.0, 1s), 6 steps = 175s (via Comfy timing)\nUpscale to 2440x3480 (us2.5, 1s), 4 steps = 235s (via Comfy timing) (5/6 steps = no real change)\nUpscale to 2928x4176 (us3.0, 1s), 4 steps = 358s (via Comfy timing) \nUpscale to 3416x4872 (us3.5, 1s), 4 steps = 557s (via Comfy timing) - image deterioration\nUpscale to 3904x5568 (us4.0, 1s), 4 steps = 852s (via Comfy timing) - even more image deterioration\n\nUpscales: (976x1280, hyper 0.14, noise .48, mult .85 , cfg 1, denoise .15)\nUpscale to 1952x2560 (us2.0, 2s), 2 steps = 216s\nUpscale to 2440x3200 (us2.5, 2s), 2 steps = 250s\nUpscale to 2928x3840 (us3.0, 2s), 2 steps = 368s\n\nGITS seems to produce less squaring + GITS denoise impacts #steps\n\nNB \"Noise from image\" = #877 ComfyUI_yanc. Has noise & saturation combined + more, though takes image input :/\n\n\n"
+      ],
+      "color": "#222",
+      "bgcolor": "#000",
+      "shape": 1
+    },
+    {
+      "id": 468,
+      "type": "Note",
+      "pos": {
+        "0": 10,
+        "1": 890
+      },
+      "size": {
+        "0": 790,
+        "1": 340
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "General Notes",
+      "properties": {
+        "text": ""
+      },
+      "widgets_values": [
+        "The defaults in this version of the \"Noisy Colour-balancing Flux Upscaler\" workflow are focused more on speed over quality. As such, most testing has been done using low numbers of steps, no -ve prompt, etc.\n\nLots of samplers work, though euler_cfg_pp seems better at low step counts. For example, other decent samplers include ipndm and uni pc.\n\neuler_cfg_pp will burn fast, especially at high cfg or denoise (>0.5) values.\n\neuler_cfg_pp can do strange things with high step counts and create some rather... interesting results. Still trying to find a way to make this useful when creating surreal images (such as actually maximising the plastic-look or smooth lines ;)\n\n\"banding\" (horizontal or vertical stripes) can occur at high resolutions. If banding is present in the initial image, it will also be present in the upscaled image. To this end, the defaults set in this workflow are about as high as it seems OK to go before such banding is too obvious.\n\nBanding can become more prominent with plain, simple-colour backgrounds.\n\nBanding may be less prominent using different scale methods, steps, seed, guidance, denoise or cfg.\n\nRemember that all settings can be changed, but sometimes it's a bit of a balancing act. For example, using an upscale method of \"nearest exact\" may be good for some parts of your image but not for text areas, or a different sampler may also need the denoise value to be changed too.\n\n"
+      ],
+      "color": "#222",
+      "bgcolor": "#000",
+      "shape": 1
+    },
+    {
+      "id": 483,
+      "type": "ImageScaleToMegapixels",
+      "pos": {
+        "0": 1840,
+        "1": 2120
+      },
+      "size": {
+        "0": 290,
+        "1": 80
+      },
+      "flags": {},
+      "order": 38,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 1198
+        },
+        {
+          "name": "upscale_model_opt",
+          "type": "UPSCALE_MODEL",
+          "link": 1170
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            1172
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageScaleToMegapixels"
+      },
+      "widgets_values": [
+        8
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930",
+      "shape": 1
+    },
+    {
+      "id": 478,
+      "type": "AuraSR.AuraSRUpscaler",
+      "pos": {
+        "0": 3020,
+        "1": 2100
+      },
+      "size": {
+        "0": 320,
+        "1": 200
+      },
+      "flags": {},
+      "order": 39,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 1199
+        },
+        {
+          "name": "transparency_mask",
+          "type": "MASK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            1167
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "AuraSR.AuraSRUpscaler"
+      },
+      "widgets_values": [
+        "model.safetensors",
+        "4x",
+        false,
+        8,
+        "default",
+        false
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930",
+      "shape": 1
+    },
+    {
+      "id": 490,
+      "type": "Note",
+      "pos": {
+        "0": 1490,
+        "1": 2100
+      },
+      "size": {
+        "0": 320,
+        "1": 60
+      },
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "Upscale models from https://openmodeldb.info/"
+      ],
+      "color": "#222",
+      "bgcolor": "#000",
+      "shape": 1
+    },
+    {
+      "id": 447,
+      "type": "PixelKSampleUpscalerProvider",
+      "pos": {
+        "0": 1480,
+        "1": 930
+      },
+      "size": {
+        "0": 350,
+        "1": 394
+      },
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": null
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 1181
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": null
+        },
+        {
+          "name": "upscale_model_opt",
+          "type": "UPSCALE_MODEL",
+          "link": 1079
+        },
+        {
+          "name": "pk_hook_opt",
+          "type": "PK_HOOK",
+          "link": null
+        },
+        {
+          "name": "scheduler_func_opt",
+          "type": "SCHEDULER_FUNC",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "UPSCALER",
+          "type": "UPSCALER",
+          "links": [
+            876
+          ],
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PixelKSampleUpscalerProvider"
+      },
+      "widgets_values": [
+        "lanczos",
+        1028893039823170,
+        "fixed",
+        4,
+        1,
+        "euler_cfg_pp",
+        "simple",
+        0.14,
+        false,
+        1024
+      ],
+      "color": "#223",
+      "bgcolor": "#335",
+      "shape": 1
+    },
+    {
+      "id": 446,
+      "type": "IterativeLatentUpscale",
+      "pos": {
+        "0": 1480,
+        "1": 1390
+      },
+      "size": {
+        "0": 350,
+        "1": 150
+      },
+      "flags": {},
+      "order": 33,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 1218
+        },
+        {
+          "name": "upscaler",
+          "type": "UPSCALER",
+          "link": 876
+        }
+      ],
+      "outputs": [
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            873
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "links": [
+            874
+          ],
+          "slot_index": 1,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "IterativeLatentUpscale"
+      },
+      "widgets_values": [
+        2,
+        2,
+        "",
+        "simple"
+      ],
+      "color": "#223",
+      "bgcolor": "#335",
+      "shape": 1
+    },
+    {
+      "id": 512,
+      "type": "Latent Noise Injection",
+      "pos": {
+        "0": 920,
+        "1": 970
+      },
+      "size": {
+        "0": 210,
+        "1": 60
+      },
+      "flags": {},
+      "order": 31,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 1221
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            1216
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Latent Noise Injection"
+      },
+      "widgets_values": [
+        0.28
+      ],
+      "color": "#222",
+      "bgcolor": "#000",
+      "shape": 1
+    },
+    {
+      "id": 517,
+      "type": "Fast Groups Bypasser (rgthree)",
+      "pos": {
+        "0": 460,
+        "1": 1340
+      },
+      "size": [
+        390,
+        180
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "OPT_CONNECTION",
+          "type": "*",
+          "links": null,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "matchColors": "",
+        "matchTitle": "",
+        "showNav": true,
+        "sort": "position",
+        "customSortAlphabet": "",
+        "toggleRestriction": "default"
+      },
+      "color": "#232",
+      "bgcolor": "#353",
+      "shape": 1
+    },
+    {
+      "id": 465,
+      "type": "UpscaleModelLoader",
+      "pos": {
+        "0": 1510,
+        "1": 1710
+      },
+      "size": {
+        "0": 320,
+        "1": 60
+      },
+      "flags": {},
+      "order": 14,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "UPSCALE_MODEL",
+          "type": "UPSCALE_MODEL",
+          "links": [
+            1079
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UpscaleModelLoader"
+      },
+      "widgets_values": [
+        "4x-PBRify_UpscalerDAT2_V1.pth"
+      ],
+      "color": "#323",
+      "bgcolor": "#535",
+      "shape": 1
+    }
+  ],
+  "links": [
+    [
+      293,
+      160,
+      0,
+      169,
+      0,
+      "CLIP"
+    ],
+    [
+      295,
+      159,
+      0,
+      170,
+      0,
+      "VAE"
+    ],
+    [
+      371,
+      219,
+      0,
+      98,
+      1,
+      "INT"
+    ],
+    [
+      372,
+      220,
+      0,
+      98,
+      0,
+      "INT"
+    ],
+    [
+      373,
+      220,
+      0,
+      99,
+      1,
+      "INT"
+    ],
+    [
+      374,
+      219,
+      0,
+      99,
+      2,
+      "INT"
+    ],
+    [
+      521,
+      169,
+      0,
+      272,
+      1,
+      "CLIP"
+    ],
+    [
+      534,
+      273,
+      0,
+      277,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      535,
+      98,
+      0,
+      277,
+      3,
+      "LATENT"
+    ],
+    [
+      687,
+      324,
+      0,
+      277,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      711,
+      161,
+      0,
+      340,
+      0,
+      "MODEL"
+    ],
+    [
+      712,
+      339,
+      0,
+      340,
+      1,
+      "MODEL"
+    ],
+    [
+      721,
+      8,
+      0,
+      344,
+      0,
+      "IMAGE"
+    ],
+    [
+      726,
+      340,
+      0,
+      99,
+      0,
+      "MODEL"
+    ],
+    [
+      727,
+      99,
+      0,
+      272,
+      0,
+      "MODEL"
+    ],
+    [
+      732,
+      272,
+      1,
+      273,
+      0,
+      "CLIP"
+    ],
+    [
+      733,
+      272,
+      1,
+      324,
+      0,
+      "CLIP"
+    ],
+    [
+      745,
+      349,
+      0,
+      346,
+      6,
+      "INT"
+    ],
+    [
+      816,
+      324,
+      0,
+      395,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      817,
+      273,
+      0,
+      395,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      828,
+      170,
+      0,
+      398,
+      0,
+      "VAE"
+    ],
+    [
+      830,
+      277,
+      0,
+      399,
+      0,
+      "LATENT"
+    ],
+    [
+      833,
+      170,
+      0,
+      8,
+      1,
+      "VAE"
+    ],
+    [
+      835,
+      272,
+      0,
+      397,
+      0,
+      "MODEL"
+    ],
+    [
+      873,
+      446,
+      0,
+      445,
+      0,
+      "LATENT"
+    ],
+    [
+      874,
+      446,
+      1,
+      445,
+      1,
+      "VAE"
+    ],
+    [
+      876,
+      447,
+      0,
+      446,
+      1,
+      "UPSCALER"
+    ],
+    [
+      877,
+      445,
+      0,
+      448,
+      0,
+      "IMAGE"
+    ],
+    [
+      884,
+      277,
+      0,
+      368,
+      0,
+      "LATENT"
+    ],
+    [
+      885,
+      277,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      886,
+      272,
+      0,
+      374,
+      0,
+      "MODEL"
+    ],
+    [
+      887,
+      170,
+      0,
+      374,
+      1,
+      "VAE"
+    ],
+    [
+      888,
+      324,
+      0,
+      374,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      889,
+      273,
+      0,
+      374,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      890,
+      345,
+      0,
+      374,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      891,
+      400,
+      0,
+      374,
+      7,
+      "INT"
+    ],
+    [
+      892,
+      272,
+      0,
+      406,
+      0,
+      "MODEL"
+    ],
+    [
+      893,
+      170,
+      0,
+      406,
+      1,
+      "VAE"
+    ],
+    [
+      894,
+      324,
+      0,
+      406,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      895,
+      273,
+      0,
+      406,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      896,
+      345,
+      0,
+      406,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      897,
+      400,
+      0,
+      406,
+      7,
+      "INT"
+    ],
+    [
+      898,
+      272,
+      0,
+      414,
+      0,
+      "MODEL"
+    ],
+    [
+      899,
+      170,
+      0,
+      414,
+      1,
+      "VAE"
+    ],
+    [
+      900,
+      324,
+      0,
+      414,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      901,
+      273,
+      0,
+      414,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      902,
+      345,
+      0,
+      414,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      903,
+      400,
+      0,
+      414,
+      7,
+      "INT"
+    ],
+    [
+      904,
+      277,
+      0,
+      411,
+      0,
+      "LATENT"
+    ],
+    [
+      905,
+      272,
+      0,
+      423,
+      0,
+      "MODEL"
+    ],
+    [
+      906,
+      170,
+      0,
+      423,
+      1,
+      "VAE"
+    ],
+    [
+      907,
+      324,
+      0,
+      423,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      908,
+      273,
+      0,
+      423,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      909,
+      345,
+      0,
+      423,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      910,
+      400,
+      0,
+      423,
+      7,
+      "INT"
+    ],
+    [
+      911,
+      277,
+      0,
+      420,
+      0,
+      "LATENT"
+    ],
+    [
+      912,
+      277,
+      0,
+      428,
+      0,
+      "LATENT"
+    ],
+    [
+      913,
+      272,
+      0,
+      320,
+      0,
+      "MODEL"
+    ],
+    [
+      914,
+      170,
+      0,
+      320,
+      1,
+      "VAE"
+    ],
+    [
+      915,
+      324,
+      0,
+      320,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      916,
+      273,
+      0,
+      320,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      917,
+      345,
+      0,
+      320,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      918,
+      400,
+      0,
+      320,
+      7,
+      "INT"
+    ],
+    [
+      919,
+      277,
+      0,
+      437,
+      0,
+      "LATENT"
+    ],
+    [
+      920,
+      277,
+      0,
+      371,
+      0,
+      "LATENT"
+    ],
+    [
+      921,
+      277,
+      0,
+      380,
+      0,
+      "LATENT"
+    ],
+    [
+      922,
+      272,
+      0,
+      386,
+      0,
+      "MODEL"
+    ],
+    [
+      923,
+      170,
+      0,
+      386,
+      1,
+      "VAE"
+    ],
+    [
+      924,
+      324,
+      0,
+      386,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      925,
+      273,
+      0,
+      386,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      926,
+      345,
+      0,
+      386,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      927,
+      400,
+      0,
+      386,
+      7,
+      "INT"
+    ],
+    [
+      928,
+      272,
+      0,
+      391,
+      0,
+      "MODEL"
+    ],
+    [
+      929,
+      170,
+      0,
+      391,
+      1,
+      "VAE"
+    ],
+    [
+      930,
+      324,
+      0,
+      391,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      931,
+      273,
+      0,
+      391,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      932,
+      345,
+      0,
+      391,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      933,
+      400,
+      0,
+      391,
+      7,
+      "INT"
+    ],
+    [
+      934,
+      272,
+      0,
+      440,
+      0,
+      "MODEL"
+    ],
+    [
+      935,
+      170,
+      0,
+      440,
+      1,
+      "VAE"
+    ],
+    [
+      936,
+      324,
+      0,
+      440,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      937,
+      273,
+      0,
+      440,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      938,
+      345,
+      0,
+      440,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      939,
+      400,
+      0,
+      440,
+      7,
+      "INT"
+    ],
+    [
+      940,
+      277,
+      0,
+      444,
+      0,
+      "LATENT"
+    ],
+    [
+      941,
+      272,
+      0,
+      447,
+      0,
+      "MODEL"
+    ],
+    [
+      942,
+      170,
+      0,
+      447,
+      1,
+      "VAE"
+    ],
+    [
+      943,
+      324,
+      0,
+      447,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      944,
+      273,
+      0,
+      447,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      945,
+      345,
+      0,
+      447,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      946,
+      400,
+      0,
+      447,
+      7,
+      "INT"
+    ],
+    [
+      947,
+      277,
+      0,
+      383,
+      0,
+      "LATENT"
+    ],
+    [
+      948,
+      277,
+      0,
+      403,
+      0,
+      "LATENT"
+    ],
+    [
+      949,
+      272,
+      0,
+      431,
+      0,
+      "MODEL"
+    ],
+    [
+      950,
+      170,
+      0,
+      431,
+      1,
+      "VAE"
+    ],
+    [
+      951,
+      324,
+      0,
+      431,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      952,
+      273,
+      0,
+      431,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      953,
+      345,
+      0,
+      431,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      954,
+      400,
+      0,
+      431,
+      7,
+      "INT"
+    ],
+    [
+      955,
+      272,
+      0,
+      277,
+      0,
+      "MODEL"
+    ],
+    [
+      956,
+      272,
+      0,
+      454,
+      0,
+      "MODEL"
+    ],
+    [
+      957,
+      170,
+      0,
+      454,
+      1,
+      "VAE"
+    ],
+    [
+      958,
+      324,
+      0,
+      454,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      959,
+      273,
+      0,
+      454,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      960,
+      345,
+      0,
+      454,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      961,
+      400,
+      0,
+      454,
+      7,
+      "INT"
+    ],
+    [
+      962,
+      277,
+      0,
+      451,
+      0,
+      "LATENT"
+    ],
+    [
+      975,
+      277,
+      0,
+      368,
+      0,
+      "LATENT"
+    ],
+    [
+      976,
+      277,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      977,
+      277,
+      0,
+      411,
+      0,
+      "LATENT"
+    ],
+    [
+      978,
+      277,
+      0,
+      420,
+      0,
+      "LATENT"
+    ],
+    [
+      979,
+      277,
+      0,
+      428,
+      0,
+      "LATENT"
+    ],
+    [
+      980,
+      277,
+      0,
+      371,
+      0,
+      "LATENT"
+    ],
+    [
+      981,
+      277,
+      0,
+      380,
+      0,
+      "LATENT"
+    ],
+    [
+      982,
+      277,
+      0,
+      444,
+      0,
+      "LATENT"
+    ],
+    [
+      983,
+      272,
+      0,
+      447,
+      0,
+      "MODEL"
+    ],
+    [
+      984,
+      170,
+      0,
+      447,
+      1,
+      "VAE"
+    ],
+    [
+      985,
+      324,
+      0,
+      447,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      986,
+      273,
+      0,
+      447,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      987,
+      345,
+      0,
+      447,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      988,
+      400,
+      0,
+      447,
+      7,
+      "INT"
+    ],
+    [
+      989,
+      277,
+      0,
+      383,
+      0,
+      "LATENT"
+    ],
+    [
+      990,
+      277,
+      0,
+      403,
+      0,
+      "LATENT"
+    ],
+    [
+      991,
+      272,
+      0,
+      277,
+      0,
+      "MODEL"
+    ],
+    [
+      992,
+      277,
+      0,
+      451,
+      0,
+      "LATENT"
+    ],
+    [
+      993,
+      277,
+      0,
+      437,
+      0,
+      "LATENT"
+    ],
+    [
+      994,
+      170,
+      0,
+      456,
+      1,
+      "VAE"
+    ],
+    [
+      995,
+      272,
+      0,
+      320,
+      0,
+      "MODEL"
+    ],
+    [
+      996,
+      170,
+      0,
+      320,
+      1,
+      "VAE"
+    ],
+    [
+      997,
+      324,
+      0,
+      320,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      998,
+      273,
+      0,
+      320,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      999,
+      345,
+      0,
+      320,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      1000,
+      400,
+      0,
+      320,
+      7,
+      "INT"
+    ],
+    [
+      1001,
+      272,
+      0,
+      374,
+      0,
+      "MODEL"
+    ],
+    [
+      1002,
+      170,
+      0,
+      374,
+      1,
+      "VAE"
+    ],
+    [
+      1003,
+      324,
+      0,
+      374,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      1004,
+      273,
+      0,
+      374,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1005,
+      345,
+      0,
+      374,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      1006,
+      400,
+      0,
+      374,
+      7,
+      "INT"
+    ],
+    [
+      1007,
+      272,
+      0,
+      423,
+      0,
+      "MODEL"
+    ],
+    [
+      1008,
+      170,
+      0,
+      423,
+      1,
+      "VAE"
+    ],
+    [
+      1009,
+      324,
+      0,
+      423,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      1010,
+      273,
+      0,
+      423,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1011,
+      345,
+      0,
+      423,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      1012,
+      400,
+      0,
+      423,
+      7,
+      "INT"
+    ],
+    [
+      1013,
+      272,
+      0,
+      454,
+      0,
+      "MODEL"
+    ],
+    [
+      1014,
+      170,
+      0,
+      454,
+      1,
+      "VAE"
+    ],
+    [
+      1015,
+      324,
+      0,
+      454,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      1016,
+      273,
+      0,
+      454,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1017,
+      345,
+      0,
+      454,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      1018,
+      400,
+      0,
+      454,
+      7,
+      "INT"
+    ],
+    [
+      1019,
+      272,
+      0,
+      440,
+      0,
+      "MODEL"
+    ],
+    [
+      1020,
+      170,
+      0,
+      440,
+      1,
+      "VAE"
+    ],
+    [
+      1021,
+      324,
+      0,
+      440,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      1022,
+      273,
+      0,
+      440,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1023,
+      345,
+      0,
+      440,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      1024,
+      400,
+      0,
+      440,
+      7,
+      "INT"
+    ],
+    [
+      1025,
+      272,
+      0,
+      391,
+      0,
+      "MODEL"
+    ],
+    [
+      1026,
+      170,
+      0,
+      391,
+      1,
+      "VAE"
+    ],
+    [
+      1027,
+      324,
+      0,
+      391,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      1028,
+      273,
+      0,
+      391,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1029,
+      345,
+      0,
+      391,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      1030,
+      400,
+      0,
+      391,
+      7,
+      "INT"
+    ],
+    [
+      1031,
+      272,
+      0,
+      386,
+      0,
+      "MODEL"
+    ],
+    [
+      1032,
+      170,
+      0,
+      386,
+      1,
+      "VAE"
+    ],
+    [
+      1033,
+      324,
+      0,
+      386,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      1034,
+      273,
+      0,
+      386,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1035,
+      345,
+      0,
+      386,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      1036,
+      400,
+      0,
+      386,
+      7,
+      "INT"
+    ],
+    [
+      1037,
+      272,
+      0,
+      431,
+      0,
+      "MODEL"
+    ],
+    [
+      1038,
+      170,
+      0,
+      431,
+      1,
+      "VAE"
+    ],
+    [
+      1039,
+      324,
+      0,
+      431,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      1040,
+      273,
+      0,
+      431,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1041,
+      345,
+      0,
+      431,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      1042,
+      400,
+      0,
+      431,
+      7,
+      "INT"
+    ],
+    [
+      1043,
+      272,
+      0,
+      414,
+      0,
+      "MODEL"
+    ],
+    [
+      1044,
+      170,
+      0,
+      414,
+      1,
+      "VAE"
+    ],
+    [
+      1045,
+      324,
+      0,
+      414,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      1046,
+      273,
+      0,
+      414,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1047,
+      345,
+      0,
+      414,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      1048,
+      400,
+      0,
+      414,
+      7,
+      "INT"
+    ],
+    [
+      1049,
+      272,
+      0,
+      406,
+      0,
+      "MODEL"
+    ],
+    [
+      1050,
+      170,
+      0,
+      406,
+      1,
+      "VAE"
+    ],
+    [
+      1051,
+      324,
+      0,
+      406,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      1052,
+      273,
+      0,
+      406,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1053,
+      345,
+      0,
+      406,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      1054,
+      400,
+      0,
+      406,
+      7,
+      "INT"
+    ],
+    [
+      1065,
+      277,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      1066,
+      272,
+      0,
+      277,
+      0,
+      "MODEL"
+    ],
+    [
+      1067,
+      277,
+      0,
+      444,
+      0,
+      "LATENT"
+    ],
+    [
+      1068,
+      272,
+      0,
+      447,
+      0,
+      "MODEL"
+    ],
+    [
+      1069,
+      170,
+      0,
+      447,
+      1,
+      "VAE"
+    ],
+    [
+      1070,
+      324,
+      0,
+      447,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      1071,
+      273,
+      0,
+      447,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1072,
+      277,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      1073,
+      272,
+      0,
+      277,
+      0,
+      "MODEL"
+    ],
+    [
+      1074,
+      277,
+      0,
+      444,
+      0,
+      "LATENT"
+    ],
+    [
+      1075,
+      272,
+      0,
+      447,
+      0,
+      "MODEL"
+    ],
+    [
+      1076,
+      170,
+      0,
+      447,
+      1,
+      "VAE"
+    ],
+    [
+      1077,
+      324,
+      0,
+      447,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      1078,
+      273,
+      0,
+      447,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1079,
+      465,
+      0,
+      447,
+      4,
+      "UPSCALE_MODEL"
+    ],
+    [
+      1080,
+      277,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      1081,
+      272,
+      0,
+      277,
+      0,
+      "MODEL"
+    ],
+    [
+      1082,
+      277,
+      0,
+      444,
+      0,
+      "LATENT"
+    ],
+    [
+      1083,
+      272,
+      0,
+      447,
+      0,
+      "MODEL"
+    ],
+    [
+      1084,
+      170,
+      0,
+      447,
+      1,
+      "VAE"
+    ],
+    [
+      1085,
+      324,
+      0,
+      447,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      1086,
+      273,
+      0,
+      447,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1087,
+      277,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      1088,
+      272,
+      0,
+      277,
+      0,
+      "MODEL"
+    ],
+    [
+      1089,
+      272,
+      0,
+      447,
+      0,
+      "MODEL"
+    ],
+    [
+      1090,
+      170,
+      0,
+      447,
+      1,
+      "VAE"
+    ],
+    [
+      1091,
+      324,
+      0,
+      447,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      1092,
+      273,
+      0,
+      447,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1093,
+      277,
+      0,
+      444,
+      0,
+      "LATENT"
+    ],
+    [
+      1094,
+      277,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      1095,
+      272,
+      0,
+      277,
+      0,
+      "MODEL"
+    ],
+    [
+      1096,
+      277,
+      0,
+      444,
+      0,
+      "LATENT"
+    ],
+    [
+      1097,
+      272,
+      0,
+      447,
+      0,
+      "MODEL"
+    ],
+    [
+      1098,
+      170,
+      0,
+      447,
+      1,
+      "VAE"
+    ],
+    [
+      1099,
+      324,
+      0,
+      447,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      1100,
+      273,
+      0,
+      447,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1102,
+      277,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      1103,
+      272,
+      0,
+      277,
+      0,
+      "MODEL"
+    ],
+    [
+      1104,
+      277,
+      0,
+      444,
+      0,
+      "LATENT"
+    ],
+    [
+      1105,
+      272,
+      0,
+      447,
+      0,
+      "MODEL"
+    ],
+    [
+      1106,
+      170,
+      0,
+      447,
+      1,
+      "VAE"
+    ],
+    [
+      1107,
+      273,
+      0,
+      447,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1108,
+      324,
+      0,
+      466,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      1109,
+      277,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      1110,
+      272,
+      0,
+      277,
+      0,
+      "MODEL"
+    ],
+    [
+      1111,
+      277,
+      0,
+      444,
+      0,
+      "LATENT"
+    ],
+    [
+      1112,
+      324,
+      0,
+      466,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      1113,
+      272,
+      0,
+      447,
+      0,
+      "MODEL"
+    ],
+    [
+      1114,
+      170,
+      0,
+      447,
+      1,
+      "VAE"
+    ],
+    [
+      1115,
+      273,
+      0,
+      447,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1116,
+      277,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      1117,
+      272,
+      0,
+      277,
+      0,
+      "MODEL"
+    ],
+    [
+      1118,
+      277,
+      0,
+      444,
+      0,
+      "LATENT"
+    ],
+    [
+      1119,
+      272,
+      0,
+      447,
+      0,
+      "MODEL"
+    ],
+    [
+      1120,
+      170,
+      0,
+      447,
+      1,
+      "VAE"
+    ],
+    [
+      1121,
+      324,
+      0,
+      447,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      1122,
+      273,
+      0,
+      447,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1123,
+      277,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      1124,
+      272,
+      0,
+      277,
+      0,
+      "MODEL"
+    ],
+    [
+      1125,
+      272,
+      0,
+      447,
+      0,
+      "MODEL"
+    ],
+    [
+      1126,
+      170,
+      0,
+      447,
+      1,
+      "VAE"
+    ],
+    [
+      1127,
+      324,
+      0,
+      447,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      1128,
+      273,
+      0,
+      447,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1129,
+      277,
+      0,
+      444,
+      0,
+      "LATENT"
+    ],
+    [
+      1130,
+      277,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      1131,
+      277,
+      0,
+      444,
+      0,
+      "LATENT"
+    ],
+    [
+      1132,
+      272,
+      0,
+      447,
+      0,
+      "MODEL"
+    ],
+    [
+      1133,
+      170,
+      0,
+      447,
+      1,
+      "VAE"
+    ],
+    [
+      1134,
+      324,
+      0,
+      447,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      1135,
+      273,
+      0,
+      447,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1136,
+      272,
+      0,
+      277,
+      0,
+      "MODEL"
+    ],
+    [
+      1137,
+      277,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      1138,
+      272,
+      0,
+      447,
+      0,
+      "MODEL"
+    ],
+    [
+      1139,
+      170,
+      0,
+      447,
+      1,
+      "VAE"
+    ],
+    [
+      1140,
+      324,
+      0,
+      447,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      1141,
+      273,
+      0,
+      447,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1142,
+      272,
+      0,
+      277,
+      0,
+      "MODEL"
+    ],
+    [
+      1143,
+      277,
+      0,
+      444,
+      0,
+      "LATENT"
+    ],
+    [
+      1144,
+      277,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      1145,
+      272,
+      0,
+      447,
+      0,
+      "MODEL"
+    ],
+    [
+      1146,
+      170,
+      0,
+      447,
+      1,
+      "VAE"
+    ],
+    [
+      1147,
+      324,
+      0,
+      447,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      1148,
+      273,
+      0,
+      447,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1149,
+      272,
+      0,
+      277,
+      0,
+      "MODEL"
+    ],
+    [
+      1150,
+      277,
+      0,
+      444,
+      0,
+      "LATENT"
+    ],
+    [
+      1151,
+      277,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      1152,
+      272,
+      0,
+      277,
+      0,
+      "MODEL"
+    ],
+    [
+      1153,
+      272,
+      0,
+      447,
+      0,
+      "MODEL"
+    ],
+    [
+      1154,
+      170,
+      0,
+      447,
+      1,
+      "VAE"
+    ],
+    [
+      1155,
+      324,
+      0,
+      447,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      1156,
+      273,
+      0,
+      447,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1157,
+      277,
+      0,
+      444,
+      0,
+      "LATENT"
+    ],
+    [
+      1167,
+      478,
+      0,
+      479,
+      0,
+      "IMAGE"
+    ],
+    [
+      1170,
+      480,
+      0,
+      483,
+      1,
+      "UPSCALE_MODEL"
+    ],
+    [
+      1172,
+      483,
+      0,
+      484,
+      0,
+      "IMAGE"
+    ],
+    [
+      1174,
+      277,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      1175,
+      272,
+      0,
+      277,
+      0,
+      "MODEL"
+    ],
+    [
+      1176,
+      272,
+      0,
+      447,
+      0,
+      "MODEL"
+    ],
+    [
+      1177,
+      170,
+      0,
+      447,
+      1,
+      "VAE"
+    ],
+    [
+      1178,
+      324,
+      0,
+      447,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      1179,
+      273,
+      0,
+      447,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1180,
+      277,
+      0,
+      444,
+      0,
+      "LATENT"
+    ],
+    [
+      1181,
+      485,
+      0,
+      447,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      1184,
+      277,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      1185,
+      272,
+      0,
+      277,
+      0,
+      "MODEL"
+    ],
+    [
+      1186,
+      272,
+      0,
+      447,
+      0,
+      "MODEL"
+    ],
+    [
+      1187,
+      170,
+      0,
+      447,
+      1,
+      "VAE"
+    ],
+    [
+      1188,
+      273,
+      0,
+      447,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1189,
+      277,
+      0,
+      444,
+      0,
+      "LATENT"
+    ],
+    [
+      1190,
+      324,
+      0,
+      485,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      1198,
+      445,
+      0,
+      483,
+      0,
+      "IMAGE"
+    ],
+    [
+      1199,
+      445,
+      0,
+      478,
+      0,
+      "IMAGE"
+    ],
+    [
+      1200,
+      277,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      1201,
+      324,
+      0,
+      485,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      1202,
+      272,
+      0,
+      447,
+      0,
+      "MODEL"
+    ],
+    [
+      1203,
+      170,
+      0,
+      447,
+      1,
+      "VAE"
+    ],
+    [
+      1204,
+      273,
+      0,
+      447,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1205,
+      277,
+      0,
+      444,
+      0,
+      "LATENT"
+    ],
+    [
+      1206,
+      272,
+      0,
+      277,
+      0,
+      "MODEL"
+    ],
+    [
+      1216,
+      512,
+      0,
+      511,
+      0,
+      "LATENT"
+    ],
+    [
+      1218,
+      511,
+      0,
+      446,
+      0,
+      "LATENT"
+    ],
+    [
+      1219,
+      511,
+      0,
+      513,
+      0,
+      "LATENT"
+    ],
+    [
+      1220,
+      513,
+      0,
+      510,
+      0,
+      "IMAGE"
+    ],
+    [
+      1221,
+      277,
+      0,
+      512,
+      0,
+      "LATENT"
+    ],
+    [
+      1222,
+      277,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      1223,
+      170,
+      0,
+      513,
+      1,
+      "VAE"
+    ],
+    [
+      1224,
+      272,
+      0,
+      277,
+      0,
+      "MODEL"
+    ],
+    [
+      1225,
+      272,
+      0,
+      447,
+      0,
+      "MODEL"
+    ],
+    [
+      1226,
+      170,
+      0,
+      447,
+      1,
+      "VAE"
+    ],
+    [
+      1227,
+      273,
+      0,
+      447,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      1228,
+      324,
+      0,
+      485,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      1230,
+      277,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      1231,
+      170,
+      0,
+      513,
+      1,
+      "VAE"
+    ],
+    [
+      1232,
+      272,
+      0,
+      277,
+      0,
+      "MODEL"
+    ],
+    [
+      1233,
+      324,
+      0,
+      485,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      1234,
+      272,
+      0,
+      447,
+      0,
+      "MODEL"
+    ],
+    [
+      1235,
+      170,
+      0,
+      447,
+      1,
+      "VAE"
+    ],
+    [
+      1236,
+      273,
+      0,
+      447,
+      3,
+      "CONDITIONING"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "X MP upscale with model (Optional)",
+      "bounding": [
+        1470,
+        2020,
+        1510,
+        1130
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "title": "Detail + Upscale",
+      "bounding": [
+        1470,
+        860,
+        1770,
+        1130
+      ],
+      "color": "#b06634",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "title": "Mandatory",
+      "bounding": [
+        0,
+        0,
+        1450,
+        840
+      ],
+      "color": "#8A8",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "title": "Noisy HRF (Optional)",
+      "bounding": [
+        880,
+        860,
+        570,
+        690
+      ],
+      "color": "#a1309b",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "title": "Initial Preview (Optional)",
+      "bounding": [
+        1470,
+        0,
+        1140,
+        840
+      ],
+      "color": "#444",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "title": "AuraSR 4x (optional)",
+      "bounding": [
+        3010,
+        2020,
+        1510,
+        1230
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.5209868481924873,
+      "offset": [
+        287.3735721120736,
+        -176.4841588754698
+      ]
+    }
+  },
+  "version": 0.4
+}
